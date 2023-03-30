@@ -1,8 +1,8 @@
 import { Observer } from "./Observer";
 
 export interface Subject {
-  subscribe(observer: Observer): void;
-  unsubscribe(observer: Observer): void;
+  addObserver(observer: Observer): void;
+  removeObserver(observer: Observer): void;
   notify(): void;
 }
 
@@ -14,12 +14,12 @@ export class ConcreteSubject implements Subject {
   /**
    * The subscription management methods.
    */
-  public subscribe(observer: Observer): void {
+  public addObserver(observer: Observer): void {
     console.log("Subject: Subscribing observer...");
     this.observers.push(observer);
   }
 
-  public unsubscribe(observer: Observer): void {
+  public removeObserver(observer: Observer): void {
     console.log("Subject: Unsubscribing observer...");
     const index = this.observers.indexOf(observer);
     if (index > -1) {
